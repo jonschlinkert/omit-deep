@@ -25,9 +25,7 @@ omitDeep({a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}});
 //=> {a: 'a', c: {d: {f: 'f'}}}
 ```
 
-### Other javascript/node.js utils
-
-Related projects that I maintain:
+### Related project I maintain
 
   - [for-in](https://github.com/jonschlinkert/for-in)
   - [for-own](https://github.com/jonschlinkert/for-own)
