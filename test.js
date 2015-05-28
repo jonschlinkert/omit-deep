@@ -1,10 +1,3 @@
-/*!
- * omit-key <https://github.com/jonschlinkert/omit-key>
- *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
- * Licensed under the MIT License
- */
-
 'use strict';
 
 var should = require('should');

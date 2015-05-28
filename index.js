@@ -1,10 +1,3 @@
-/*!
- * omit-deep <https://github.com/jonschlinkert/omit-deep>
- *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 var isObject = require('isobject');
