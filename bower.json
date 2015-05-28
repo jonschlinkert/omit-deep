@@ -1,0 +1,33 @@
+{
+  "name": "omit-deep",
+  "description": "Recursively omit the specified key or keys from an object.",
+  "repository": "jonschlinkert/omit-deep",
+  "license": "MIT",
+  "homepage": "https://github.com/jonschlinkert/omit-deep",
+  "authors": [
+    "Jon Schlinkert (https://github.com/jonschlinkert)"
+  ],
+  "main": [
+    "index.js"
+  ],
+  "dependencies": {
+    "for-own": "^0.1.3",
+    "isobject": "^1.0.0",
+    "omit-keys": "^0.1.0"
+  },
+  "devDependencies": {
+    "should": "^6.0.3"
+  },
+  "keywords": [
+    "deep",
+    "omit",
+    "key",
+    "keys",
+    "delete",
+    "remove",
+    "object",
+    "prop",
+    "properties",
+    "values"
+  ]
+}
