@@ -1,76 +1,42 @@
 {
   "name": "omit-deep",
-  "description": "Recursively omit specified keys from an object.",
-  "version": "0.1.1",
+  "description": "Recursively omit the specified key or keys from an object.",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/omit-deep",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/omit-deep.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/omit-deep",
   "bugs": {
     "url": "https://github.com/jonschlinkert/omit-deep/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jonschlinkert/omit-deep/blob/master/LICENSE-MIT"
-    }
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha"
+  },
+  "dependencies": {
+    "for-own": "^0.1.3",
+    "isobject": "^1.0.0",
+    "omit-keys": "^0.1.0"
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "^4.0.4",
-    "verb": ">= 0.2.6",
-    "verb-tag-jscomments": ">= 0.2.0"
+    "should": "^6.0.3"
   },
   "keywords": [
-    "array",
-    "arrays",
-    "clear",
-    "delete",
-    "empty",
-    "find",
-    "flat",
-    "flatten",
-    "has",
-    "hasown",
-    "javascript",
-    "js",
+    "deep",
+    "omit",
     "key",
     "keys",
-    "lo-dash",
-    "lodash",
-    "nested",
-    "node",
-    "node-js",
-    "object",
-    "omit",
-    "properties",
-    "property",
-    "recurse",
-    "recursive",
-    "recursively",
+    "delete",
     "remove",
-    "underscore",
-    "util",
-    "utilities",
-    "utility",
-    "utils",
-    "value"
-  ],
-  "dependencies": {
-    "for-own": "^0.1.2",
-    "isobject": "^0.2.0",
-    "omit-keys": "^0.1.0"
-  }
+    "object",
+    "prop",
+    "properties",
+    "values"
+  ]
 }
