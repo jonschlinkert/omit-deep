@@ -9,11 +9,11 @@ var omit = require('omit-keys');
 module.exports = function omitDeep(input, props) {
   function omitDeepOnOwnProps(obj) {
     if (!isArray(obj) && !isObject(obj)) {
-      return obj
+      return obj;
     }
 
     if (isArray(obj)) {
-      return omitDeep(obj, props)
+      return omitDeep(obj, props);
     }
 
     var o = {};
@@ -23,13 +23,13 @@ module.exports = function omitDeep(input, props) {
     return omit(o, props);
   }
 
-  if (input === undefined) {
-    return {}
+  if (typeof input === 'undefined') {
+    return {};
   }
 
   if (isArray(input)) {
-    return input.map(omitDeepOnOwnProps)
+    return input.map(omitDeepOnOwnProps);
   }
 
-  return omitDeepOnOwnProps(input)
+  return omitDeepOnOwnProps(input);
 };
