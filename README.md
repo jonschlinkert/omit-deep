@@ -15,7 +15,7 @@ $ npm i omit-deep --save
 ```js
 var omitDeep = require('omit-deep');
 
-omitDeep({a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}});
+omitDeep({a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}}, 'b');
 //=> {a: 'a', c: {d: {f: 'f'}}}
 ```
 
