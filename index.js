@@ -1,35 +1,33 @@
 'use strict';
 
-var isObject = require('isobject');
-var isArray = require('isarray')
+var isObject = require('is-plain-object');
 var forOwn = require('for-own');
 var omit = require('omit-keys');
 
-
-module.exports = function omitDeep(input, props) {
-  function omitDeepOnOwnProps(obj) {
-    if (!isArray(obj) && !isObject(obj)) {
-      return obj;
-    }
-
-    if (isArray(obj)) {
-      return omitDeep(obj, props);
-    }
-
-    var o = {};
-    forOwn(obj, function (value, key) {
-      o[key] = omitDeep(value, props);
-    });
-    return omit(o, props);
-  }
-
-  if (typeof input === 'undefined') {
+module.exports = function omitDeep(value, props) {
+  if (typeof value === 'undefined') {
     return {};
   }
 
-  if (isArray(input)) {
-    return input.map(omitDeepOnOwnProps);
+  if (Array.isArray(value)) {
+    for (var i = 0; i < value.length; i++) {
+      value[i] = omitDeep(value[i], props);
+    }
+    return value;
   }
 
-  return omitDeepOnOwnProps(input);
+  if (Array.isArray(value)) {
+    return omitDeep(value, props);
+  }
+
+  if (!isObject(value)) {
+    return value;
+  }
+
+  var o = {};
+  forOwn(value, function (val, key) {
+    o[key] = omitDeep(val, props);
+  });
+
+  return omit(o, props);
 };

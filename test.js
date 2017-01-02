@@ -5,19 +5,31 @@ var assert = require('assert');
 var omitDeep = require('./');
 
 describe('.omit()', function() {
+  it('should return the object if it is not a plain object', function() {
+    var date = new Date();
+    var obj = omitDeep(date, 'foo');
+    assert(obj === date);
+    assert.deepEqual(obj, date);
+  });
+
+  it('should return the value if it is not a plain object', function() {
+    assert.deepEqual(omitDeep('foo'), 'foo');
+    assert.deepEqual(omitDeep(42), 42);
+  });
+
   it('should recursively omit key passed as a string.', function() {
-    var o = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, 'b')
-    assert.deepEqual(o, {a: 'a', c: {d: 'd', e: {f: 'f', g: {c: 'c'}}}});
+    var obj = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, 'b');
+    assert.deepEqual(obj, {a: 'a', c: {d: 'd', e: {f: 'f', g: {c: 'c'}}}});
   });
 
   it('should recursively omit key passed as an array.', function() {
-    var o = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, ['b'])
-    assert.deepEqual(o, {a: 'a', c: {d: 'd', e: {f: 'f', g: {c: 'c'}}}});
+    var obj = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, ['b']);
+    assert.deepEqual(obj, {a: 'a', c: {d: 'd', e: {f: 'f', g: {c: 'c'}}}});
   });
 
   it('should recursively omit multiple keys.', function() {
-    var o = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, ['b', 'd', 'f'])
-    assert.deepEqual(o, {a: 'a', c: {e: {g: {c: 'c'}}}});
+    var obj = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, ['b', 'd', 'f']);
+    assert.deepEqual(obj, {a: 'a', c: {e: {g: {c: 'c'}}}});
   });
 
   it('should omit the given keys.', function() {
@@ -37,13 +49,13 @@ describe('.omit()', function() {
   });
 
   it('should omit keys from objects in arrays', function() {
-    var o = omitDeep([
+    var obj = omitDeep([
       {a: 'a', b: 'b'},
       [
         {a: 'a', b: 'b'}
       ]
-    ], 'b')
-    assert.deepEqual(o, [
+    ], 'b');
+    assert.deepEqual(obj, [
       {a: 'a'},
       [
         {a: 'a'}
@@ -52,12 +64,12 @@ describe('.omit()', function() {
   });
 
   it('should preserve arrays when not omitting objects from them', function() {
-    var o = omitDeep({
-      "numbers": ["1", "2"]
-    }, 'nothing')
+    var obj = omitDeep({
+      'numbers': ['1', '2']
+    }, 'nothing');
 
-    assert.deepEqual(o, {
-      "numbers": ["1", "2"]
+    assert.deepEqual(obj, {
+      'numbers': ['1', '2']
     });
-  })
+  });
 });
