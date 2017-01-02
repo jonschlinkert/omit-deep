@@ -16,16 +16,12 @@ module.exports = function omitDeep(value, props) {
     return value;
   }
 
-  if (Array.isArray(value)) {
-    return omitDeep(value, props);
-  }
-
   if (!isObject(value)) {
     return value;
   }
 
   var o = {};
-  forOwn(value, function (val, key) {
+  forOwn(value, function(val, key) {
     o[key] = omitDeep(val, props);
   });
 
