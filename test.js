@@ -17,6 +17,16 @@ describe('.omit()', function() {
     assert.deepEqual(omitDeep(42), 42);
   });
 
+  it('should omit keys using dot notation', function() {
+    var obj = omitDeep({a: {b: {c: {d: {e: 'e'}, f: {g: 'g'}}}}}, 'a.b.c.d');
+    assert.deepEqual(obj, {a: {b: {c: {f: {g: 'g'}}}}});
+  });
+
+  it('should omit multiple keys using dot notation', function() {
+    var obj = omitDeep({a: {x: 'y', b: {c: {d: {e: 'e'}, f: {g: 'g'}}}}}, ['a.b.c.d', 'a.x']);
+    assert.deepEqual(obj, {a: {b: {c: {f: {g: 'g'}}}}});
+  });
+
   it('should recursively omit key passed as a string.', function() {
     var obj = omitDeep({a: 'a', b: 'b', c: {b: 'b', d: 'd', e: {b: 'b', f: 'f', g: {b: 'b', c: 'c'}}}}, 'b');
     assert.deepEqual(obj, {a: 'a', c: {d: 'd', e: {f: 'f', g: {c: 'c'}}}});
