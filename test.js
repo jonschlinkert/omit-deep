@@ -30,4 +30,33 @@ describe('.omit()', function () {
   it('should return an empty object if no object is specified.', function () {
     omitDeep().should.eql({});
   });
+
+  it('should return the input unchaged if not an array or an object', function () {
+    omitDeep('foo').should.eql('foo');
+  });
+
+  it('should omit keys from objects in arrays', function () {
+    var o = omitDeep([
+      {a: 'a', b: 'b'},
+      [
+        {a: 'a', b: 'b'}
+      ]
+    ], 'b')
+    o.should.eql([
+      {a: 'a'},
+      [
+        {a: 'a'}
+      ]
+    ]);
+  });
+
+  it('should preserve arrays when not omitting objects from them', function() {
+    var o = omitDeep({
+      "numbers": ["1", "2"]
+    }, 'nothing')
+
+    o.should.eql({
+      "numbers": ["1", "2"]
+    });
+  })
 });
