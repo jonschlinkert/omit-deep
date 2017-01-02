@@ -15,8 +15,21 @@ $ npm install --save omit-deep
 ```js
 var omitDeep = require('omit-deep');
 
-omitDeep({a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}});
+var obj = {a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}};
+console.log(omitDeep(obj, ['b']));
 //=> {a: 'a', c: {d: {f: 'f'}}}
+
+var obj = {a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}};
+console.log(omitDeep(obj, ['b', 'f']));
+//=> {a: 'a', c: {d: {}}}
+```
+
+Also works with dot-notation:
+
+```js
+var obj = {a: 'a', b: 'b', c: {b: 'b', d: {b: 'b', f: 'f'}}};
+console.log(omitDeep(obj, ['c.d.b', 'f']));
+//=> { a: 'a', b: 'b', c: { b: 'b', d: {} } }
 ```
 
 ## About
@@ -29,7 +42,7 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 | **Commits** | **Contributor** | 
 | --- | --- |
-| 11 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 18 | [jonschlinkert](https://github.com/jonschlinkert) |
 | 2 | [splodingsocks](https://github.com/splodingsocks) |
 | 1 | [rikukissa](https://github.com/rikukissa) |
 
