@@ -4,7 +4,7 @@ var isObject = require('is-plain-object');
 var unset = require('unset-value');
 
 module.exports = function omitDeep(value, keys) {
-  if (typeof value === 'undefined') {
+  if (!value) {
     return {};
   }
 
