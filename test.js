@@ -5,16 +5,23 @@ var assert = require('assert');
 var omitDeep = require('./');
 
 describe('.omit()', function() {
-  it('should return the object if it is not a plain object', function() {
-    var date = new Date();
-    var obj = omitDeep(date, 'foo');
-    assert(obj === date);
-    assert.deepEqual(obj, date);
-  });
+  it('should always return the given value', function() {
+    assertReturn(undefined);
+    assertReturn(null);
+    assertReturn(false);
+    assertReturn(true);
+    assertReturn('foo');
+    assertReturn(42);
+    assertReturn(new Date());
+    assertReturn([]);
+    assertReturn({ key: 'item' });
 
-  it('should return the value if it is not a plain object', function() {
-    assert.deepEqual(omitDeep('foo'), 'foo');
-    assert.deepEqual(omitDeep(42), 42);
+    function assertReturn(value) {
+      // should return the unchanged object
+      assert.strictEqual(omitDeep(value), value);
+      // or the changed object
+      assert.strictEqual(omitDeep(value, ['key']), value);
+    }
   });
 
   it('should omit keys using dot notation', function() {
@@ -46,16 +53,8 @@ describe('.omit()', function() {
     assert.deepEqual(omitDeep({a: 'a', b: 'b', c: 'c'}, ['a', 'c']), { b: 'b' });
   });
 
-  it('should return the object if no keys are specified.', function() {
+  it('should return the object unchanged if no keys are specified.', function() {
     assert.deepEqual(omitDeep({a: 'a', b: 'b', c: 'c'}), {a: 'a', b: 'b', c: 'c'});
-  });
-
-  it('should return an empty object if no object is specified.', function() {
-    assert.deepEqual(omitDeep(), {});
-  });
-
-  it('should return the input unchaged if not an array or an object', function() {
-    assert.deepEqual(omitDeep('foo'), 'foo');
   });
 
   it('should omit keys from objects in arrays', function() {

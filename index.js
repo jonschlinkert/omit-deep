@@ -4,10 +4,6 @@ var isObject = require('is-plain-object');
 var unset = require('unset-value');
 
 module.exports = function omitDeep(value, keys) {
-  if (typeof value === 'undefined') {
-    return {};
-  }
-
   if (Array.isArray(value)) {
     for (var i = 0; i < value.length; i++) {
       value[i] = omitDeep(value[i], keys);
