@@ -33,12 +33,12 @@ module.exports = function omitDeep(value, keys) {
 
   for (var key in value) {
     if (value.hasOwnProperty(key)) {
-      var valueKeys = Object.keys(value[key]);
+      var valueKeys = value[key] && Object.keys(value[key]);
       value[key] = omitDeep(value[key], keys);
       //if value[key] is {} and the key was omitted delete
       // the whole key from parent
-      if(Object.entries(value[key]).length  === 0 &&
-        keys.some(v => valueKeys.includes(v))) delete value[key]
+      if(value[key] && Object.entries(value[key]).length  === 0 &&
+        keys.some(v => valueKeys && valueKeys.includes(v))) delete value[key]
     }
 
   }
