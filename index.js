@@ -13,7 +13,6 @@ function isEmptyObject(obj) {
 }
 
 module.exports = function omitDeep(value, keys, opts) {
-  const opts  = opts || {};
   if (typeof value === 'undefined') {
     return {};
   }
