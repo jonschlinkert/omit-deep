@@ -82,4 +82,10 @@ describe('.omit()', function() {
       'numbers': ['1', '2']
     });
   });
+
+  it('should delete object of empty values as a result of using the cleanEmtpy option ', function() {
+    var obj = { foo: { bar: 'baz' }, fizz: {} };
+    omitDeep(obj, 'bar', {cleanEmpty: true});
+    assert.deepEqual(obj, { fizz: {} });
+  });
 });

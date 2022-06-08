@@ -3,7 +3,17 @@
 var isObject = require('is-plain-object');
 var unset = require('unset-value');
 
-module.exports = function omitDeep(value, keys) {
+function isEmptyObject(obj) {
+  for (var k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+module.exports = function omitDeep(value, keys, opts) {
+  opts = opts || {};
   if (typeof value === 'undefined') {
     return {};
   }
@@ -33,7 +43,17 @@ module.exports = function omitDeep(value, keys) {
 
   for (var key in value) {
     if (value.hasOwnProperty(key)) {
+      var keyIsObj = isObject(value[key]);
+
+      if (keyIsObj && isEmptyObject(value[key])) {
+        continue;
+      }
+
       value[key] = omitDeep(value[key], keys);
+
+      if (opts.cleanEmpty && keyIsObj && isEmptyObject(value[key])) {
+        unset(value, key);
+      }
     }
   }
 
