@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "is-plain-object": "^2.0.1",
-    "unset-value": "^0.1.1"
+    "unset-value": "^2.0.1"
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.11",
